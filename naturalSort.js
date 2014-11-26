@@ -3,12 +3,13 @@
  * Author: Jim Palmer (based on chunking idea from Dave Koelle)
  */
  export default function (a, b) {
+    var caseInsensitive = true;
     var re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi,
         sre = /(^[ ]*|[ ]*$)/g,
         dre = /(^([\w ]+,?[\w ]+)?[\w ]+,?[\w ]+\d+:\d+(:\d+)?[\w ]?|^\d{1,4}[\/\-]\d{1,4}[\/\-]\d{1,4}|^\w+, \w+ \d+, \d{4})/,
         hre = /^0x[0-9a-f]+$/i,
         ore = /^0/,
-        i = function(s) { return naturalSort.insensitive && (''+s).toLowerCase() || ''+s },
+        i = function(s) { return caseInsensitive && (''+s).toLowerCase() || ''+s },
         // convert all to strings strip whitespace
         x = i(a).replace(sre, '') || '',
         y = i(b).replace(sre, '') || '',
